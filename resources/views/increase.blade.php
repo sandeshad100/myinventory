@@ -13,6 +13,7 @@
 <body>
    
     <div class="container">
+    <x-header/>
         <h2>Increase Qty</h2>
         <form action="{{route('incItemView',$item->id)}}" method="post">
             @csrf

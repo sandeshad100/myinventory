@@ -1,13 +1,17 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\stock;
+use App\Models\category;
 
 class StockController extends Controller
 {
     //inc quantity
+
+    public function getForm(){
+        $categories = category::all();
+        return view('buy',compact('categories'));
+    }
     public function incItem($id)
     {
         $item = stock::find($id);
@@ -35,6 +39,7 @@ class StockController extends Controller
          $item->update();
          return redirect()->route('show');
      }
+   
     /**
      * Store a newly created resource in storage.
      *
@@ -45,6 +50,7 @@ class StockController extends Controller
     {
         $stock = new stock;
         $stock->item = $req->item;
+        $stock->category_id = $req->category;
         $stock->qty = $req->qty;
         $stock->rate = $req->rate;
         $stock->save();
@@ -60,13 +66,28 @@ class StockController extends Controller
     public function show(stock $stock)
     {
         $data =  stock::all();
-        return view('/display', compact('data'));
+        $category = category::all();
+        return view('/display', compact('data','category'));
     }
     public function incForm()
     {
         return view('/display');
     }
 
+    //category
+    public function addCategory()
+    {
+
+        return view('/category');
+    }
+    public function addCategoryView(Request $request)
+    {
+      
+       $category_tbl = new category;
+       $category_tbl->category_name = $request->category;
+       $category_tbl->save();
+        return redirect()->route('show');
+    }
     /**
      * Show the form for editing the specified resource.
      *

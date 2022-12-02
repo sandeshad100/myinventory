@@ -10,11 +10,10 @@ Route::get('/', function () {
 Route::get('/buy', function () {
     return view('buy');
 });
-Route::get('/form', function () {
-    return view('buy');
-});
-Route::post("/form", [StockController::class,'store'])->name('addData');
 
+Route::get("/form", [StockController::class,'getForm'])->name('addData');
+
+Route::post("/form", [StockController::class,'store'])->name('addData');
 
 Route::get('/display', function () {
     return view('display');
@@ -30,4 +29,10 @@ Route::post("/incItemView/{id}", [StockController::class,'incItemView'])->name('
 //dec quantity
 Route::get("/decItem/{id}", [StockController::class,'decItem'])->name('sub.qty');
 Route::post("/decItemView/{id}", [StockController::class,'decItemView'])->name('decItemView');
+
+//add category from display page
+Route::get("/addCategory", [StockController::class,'addCategory'])->name('add.category');
+//get category data and add to table
+Route::post("/addCategoryView", [StockController::class,'addCategoryView'])->name('addCategoryView');
+
 

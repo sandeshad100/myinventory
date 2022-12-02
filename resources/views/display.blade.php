@@ -14,7 +14,7 @@
 <body>
 
     <div class="container">
-        <h2 class="title">Hunchha Stock</h2>
+     <x-header/>
         <a href="/form"><button>Add New Item</button></a>
         <a href="{{Route('add.category')}}"><button>Add New Category</button></a>
         <table class="table">
@@ -30,15 +30,16 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($data as $item)
+                @foreach ($data as $row)
                 <tr>
-                    <td>{{ $item['id'] }}</td>
-                    <td>{{ $item['item'] }}</td>
-                    <td>{{ $item['category'] }}</td>
-                    <td>{{ $item['qty'] }}</td>
-                    <td>{{ $item['rate'] }}</td>
-                    <td><a href="{{Route('add.qty',$item->id)}}"><button>Add</button></a></td>
-                    <td><a href="{{Route('sub.qty',$item->id)}}"><button>Deduct</button></a></td>
+                    <td>{{ $row['id'] }}</td>
+                    <td>{{ $row['item'] }}</td>
+                    <td>{{ $row->category['category_name'] }}</td>
+                    <td>{{ $row['qty'] }}</td>
+                    <td>{{ $row['rate'] }}</td>
+                    <td><a href="{{Route('add.qty',$row->id)}}"><button>Add</button></a></td>
+                    <td><a href="{{Route('sub.qty',$row->id)}}"><button>Deduct</button></a></td>
+                
                 </tr>
                 @endforeach
             </tbody>

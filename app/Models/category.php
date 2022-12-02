@@ -5,10 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class stock extends Model
+class category extends Model
 {
     use HasFactory;
-    public function category(){
-        return $this->belongsTo('App\Models\category');
-    }
 }

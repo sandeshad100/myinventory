@@ -8,8 +8,9 @@
 </head>
 <body>
 <div class="container">
+<x-header/>
     <h1>Category Item</h1>
-    <form action="{{route('addData')}}" method="POST">
+    <form action="{{route('addCategoryView')}}" method="post">
         @csrf
         <label>Category Name</label>
         <input type="text" name="category">
